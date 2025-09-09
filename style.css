@@ -9,8 +9,6 @@
   --button-border: #111;
   --footer-bg: rgb(71, 67, 67);
   --footer-text: #fff;
-  --map-bg: #e2e2e2;
-  --map-text: #555;
   --myBtn-bg: #545454;
   --myBtn-text: #fff;
   --myBtn-color: #8e8787;
@@ -26,8 +24,6 @@ body.dark-mode {
   --button-border: #fff;
   --footer-bg: #222;
   --footer-text: #fff;
-  --map-bg: #333;
-  --map-text: #ccc;
   --myBtn-bg: #545454;
   --myBtn-text: #fff;
   --myBtn-color: #8e8787;
@@ -203,16 +199,6 @@ footer {
   z-index: 100;
 }
 
-.map {
-  background-color: var(--map-bg);
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: var(--map-text);
-  border-radius: 8px;
-}
 
 /* Timeline Section */
 
