@@ -5,7 +5,7 @@ const themeIcon = document.getElementById('theme-icon');
 // Apply saved theme on page load
 if (localStorage.getItem('theme') === 'dark') {
   document.body.classList.add('dark-mode');
-  themeIcon.textContent = '☀'; 
+  themeIcon.textContent = '☀️'; 
 } else {
   document.body.classList.remove('dark-mode');
   themeIcon.textContent = '🌑';
@@ -17,7 +17,7 @@ toggle.addEventListener('click', () => {
 
   if (document.body.classList.contains('dark-mode')) {
     localStorage.setItem('theme', 'dark');
-    themeIcon.textContent = '☀';
+    themeIcon.textContent = '☀️';
   } else {
     localStorage.setItem('theme', 'light');
     themeIcon.textContent = '🌑';
@@ -25,7 +25,7 @@ toggle.addEventListener('click', () => {
 });
 
 
-// Get the button
+// Get the button for scroling
 let mybutton = document.getElementById("myBtn");
 
 // scrolls down from 20 px the top of the document, show the button

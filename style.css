@@ -89,13 +89,14 @@ button, .btn {
   font-weight: 600;
 }
 
+/* dark white toggle button */
 button.secondary, .btn.secondary {
   background-color: var(--bg-color);
   color: var(--text-color);
   border: 1px solid var(--text-color);
 }
 
-/* Theme Toggle Button */
+/* Theme Toggle */
 #theme-toggle {
   position: fixed;
   top: 20px;
@@ -104,6 +105,8 @@ button.secondary, .btn.secondary {
   padding: 10px 20px;
   border-radius: 10px;
 }
+
+/* text conf */
 
 h1 {
   font-size: 2.5rem;
@@ -123,11 +126,6 @@ p {
   text-align: center;
 }
 
-.p {
-  font-size: 18px;
-  text-align: center;
-}
-
 /* define the articles/document */
 section {
   margin: 40px 0;
@@ -144,6 +142,7 @@ img {
   display: block;
   border-radius: 8px;
 }
+
 /* Hero Section "background with image"*/
 .hero {
   height: 100vh;
@@ -165,6 +164,8 @@ img {
   margin: 40px 0;
   flex-wrap: wrap;
 }
+
+
 
 .text-image:nth-child(even) {
   flex-direction: row-reverse;
@@ -198,7 +199,6 @@ footer {
   padding: 15px 0;
   z-index: 100;
 }
-
 
 /* Timeline Section */
 
@@ -328,6 +328,14 @@ body.dark-mode .timeline-content {
   animation: slideIn 1s forwards; /* 1s animation, keeps the final state */
   animation-delay: 0.2s; /* optional: delay before starting */
 }
+
+.origins_right {
+  opacity: 0; /* start invisible */
+  transform: translateX(-100%); /* start off-screen to the right */
+  animation: slideIn 1s forwards; /* 1s animation, keeps the final state */
+  animation-delay: 0.2s; /* optional: delay before starting */
+}
+
 
 @keyframes slideIn {
   to {
