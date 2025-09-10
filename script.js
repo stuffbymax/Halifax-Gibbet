@@ -5,7 +5,7 @@ const themeIcon = document.getElementById('theme-icon');
 // Apply saved theme on page load
 if (localStorage.getItem('theme') === 'dark') {
   document.body.classList.add('dark-mode');
-  themeIcon.textContent = '☀️'; 
+  themeIcon.textContent = '☀'; 
 } else {
   document.body.classList.remove('dark-mode');
   themeIcon.textContent = '🌑';
@@ -17,7 +17,7 @@ toggle.addEventListener('click', () => {
 
   if (document.body.classList.contains('dark-mode')) {
     localStorage.setItem('theme', 'dark');
-    themeIcon.textContent = '☀️';
+    themeIcon.textContent = '☀';
   } else {
     localStorage.setItem('theme', 'light');
     themeIcon.textContent = '🌑';
@@ -25,7 +25,27 @@ toggle.addEventListener('click', () => {
 });
 
 
-// Get the button for scroling
+document.addEventListener("DOMContentLoaded", () => {
+  const elements = document.querySelectorAll(".origins_articale, .origins_articale_right");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate");
+      } else {
+        entry.target.classList.remove("animate"); // Reset when out of view
+      }
+    });
+  }, {
+    threshold: 0.3 // Adjust based on how much visibility you want
+  });
+
+  elements.forEach(el => observer.observe(el));
+});
+
+
+
+// Get the button
 let mybutton = document.getElementById("myBtn");
 
 // scrolls down from 20 px the top of the document, show the button
