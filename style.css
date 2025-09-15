@@ -12,6 +12,8 @@
   --myBtn-bg: #545454;
   --myBtn-text: #fff;
   --myBtn-color: #8e8787;
+  --source-link-color: #92c9ee;
+  --source-text-color-static: #e4df99;
 }
 
 /* Color Variables for Dark Mode */
@@ -54,6 +56,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  overflow-x: hidden;
 }
 
 main {
@@ -67,6 +70,53 @@ header {
   padding: 20px 0;
   background-color: var(--header-bg);
 }
+
+/* nav for later */
+
+/* .nav {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: #333333; 
+}
+
+.nav ul {
+  background-color: #333333;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav ul li {
+  float: left;
+  border-right:1px solid #bbbbbb;
+}
+
+.nav ul li:last-child {
+  border-right: none;
+}
+
+.nav ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.nav ul li a:hover:not(.active) {
+  background-color: #111111;
+}
+
+.nav ul li a.active {
+  background-color: #04AA6D;
+} */
 
 header ul {
   list-style: none;
@@ -143,16 +193,18 @@ img {
   border-radius: 8px;
 }
 
-/* Hero Section "background with image"*/
-/* .hero {
-  height: 100vh;
-  background: url('your-image.jpg') no-repeat center center/cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.7);
-} */
+.hero {
+  width: 100%;
+  height: 50vh; /* adjust height to taste */
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ensures full coverage */
+  display: block;
+}
 
 /* text with image left to right   */
 
@@ -165,6 +217,19 @@ img {
   flex-wrap: wrap;
 }
 
+.text a {
+  color: var(--source-text-color-static);
+text-decoration: none;
+}
+
+.text, a {
+  text-align: center;
+}
+
+.text a:hover {
+  color: var(--source-link-color);
+text-decoration: underline;
+}
 
 
 .text-image:nth-child(even) {
@@ -294,7 +359,7 @@ body.dark-mode .timeline-content {
 }
 
 #myBtn:hover {
-  background-color: #555;
+  background-color: rgb(78, 130, 139)
 }
 
 
@@ -315,11 +380,12 @@ body.dark-mode .timeline-content {
 }
 
 .sources a {
-  color: var(--text-color);
+  color: var(--source-text-color-static);
   text-decoration: none;
 }
 .sources a:hover {
   text-decoration: underline;
+  color: var(--source-link-color);
 }
 
 /* Initial state */
@@ -335,6 +401,57 @@ body.dark-mode .timeline-content {
 
 .origins_articale_right.animate {
   animation: slideInRight 1s forwards;
+}
+
+.btn_n {
+  position: relative;
+  width: 240px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+  font-size: 2em;
+  transition: 0.5s;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #e50914;
+  /* border: 1px solid #fff; */
+}
+
+.btn_n:hover {
+  filter: drop-shadow(0 0 10px #e50914) drop-shadow(0 0 30px #e50914);
+  letter-spacing: 0.2em;
+  color: #fff;
+}
+
+.btn_n span {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: #e50914;
+  pointer-events: none;
+  transition: transform 0.2s ease-in-out;
+  z-index: -1;
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+.btn_n:hover span {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+.btn_n span:nth-child(even) {
+  transform-origin: top;
+}
+.btn_n:hover span:nth-child(even) {
+  transform-origin: bottom;
 }
 
 /* Keyframes */
@@ -375,6 +492,51 @@ body.dark-mode .timeline-content {
 }
 
 
+    .guillotine {
+      position: relative;
+      width: 100px;
+      height: 150px;
+      background-color: #333;
+      border: 2px solid #222;
+      border-radius: 8px;
+      left: 39%;
+      overflow: hidden;
+    }
+
+    .blade {
+      position: absolute;
+      top: 0;
+      left: 25%;
+      width: 50%;
+      height: 20px;
+      background-color: crimson;
+      animation: dropBlade 2s infinite ease-in-out;
+    }
+
+    .head {
+      position: absolute;
+      bottom: 10px;
+      left: 30%;
+      width: 40%;
+      height: 40px;
+      background-color: peachpuff;
+      border-radius: 50%;
+      animation: vanishHead 2s infinite ease-in-out;
+    }
+
+    @keyframes dropBlade {
+      0% { top: 0; }
+      40% { top: 100px; }
+      60% { top: 100px; }
+      100% { top: 0; }
+    }
+
+    @keyframes vanishHead {
+      0%, 39% { opacity: 1; }
+      40%, 100% { opacity: 0; }
+    }
+
+
 @keyframes slideIn {
   to {
     opacity: 1;
@@ -407,15 +569,7 @@ body.dark-mode .timeline-content {
     font-size: 14px;
   }
 
-  .hero {
-    height: 50vh;
-    text-align: center;
-    padding: 0 20px;
-  }
 
-  .hero h1 {
-    font-size: 2rem;
-  }
 
   .text-image {
     flex-direction: row;
@@ -461,8 +615,8 @@ body.dark-mode .timeline-content {
     left: 20px;
   }
 
-  footer {
-    font-size: 14px;
-    padding: 10px 0;
-  }
+  
 }
+
+
+/* End of CSS */
