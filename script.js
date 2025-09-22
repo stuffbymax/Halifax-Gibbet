@@ -88,3 +88,26 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// hanburger menu
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+
+
+const blade = document.querySelector('.blade');
+const headBounce = document.querySelector('.head-bounce');
+
+blade.addEventListener('animationend', () => {
+  const rect = blade.getBoundingClientRect();
+  headBounce.style.left = rect.left + rect.width / 2 - 20 + 'px';
+  headBounce.style.top = rect.top + 220 + 'px';
+  headBounce.style.display = 'block';
+});
+
+
+
+
+

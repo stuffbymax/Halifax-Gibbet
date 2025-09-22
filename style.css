@@ -70,54 +70,42 @@ header {
   padding: 20px 0;
   background-color: var(--header-bg);
 }
-
-/* nav for later */
-
-/* .nav {
-  width: 100vw;
+/* Navigation Styles */
+header {
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  background-color: #333333; 
 }
 
-.nav ul {
-  background-color: #333333;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  max-width: 1200px;
-  margin: 0 auto;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-.nav ul li {
-  float: left;
-  border-right:1px solid #bbbbbb;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-.nav ul li:last-child {
-  border-right: none;
-}
-
-.nav ul li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
+.nav-links li a {
   text-decoration: none;
+  color: var(--text-color);
+  font-weight: 600;
+  padding: 8px 12px;
+  transition: 0.3s;
 }
 
-.nav ul li a:hover:not(.active) {
-  background-color: #111111;
+.nav-links li a:hover {
+  color: var(--source-link-color);
 }
 
-.nav ul li a.active {
-  background-color: #04AA6D;
-} */
-
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
 header ul {
   list-style: none;
   display: flex;
@@ -569,7 +557,151 @@ body.dark-mode .timeline-content {
     font-size: 14px;
   }
 
+  /* Guillotine Scene */
+.guillotine {
+  position: relative;
+  width: 160px;
+  height: 320px;
+  margin: 50px auto;
+  background: #8b5a2b; /* wooden frame */
+  border: 5px solid #5a3d1b;
+  border-radius: 6px;
+  overflow: visible;
+}
 
+/* Posts */
+.guillotine::before,
+.guillotine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 15px;
+  height: 100%;
+  background: #5a3d1b;
+}
+.guillotine::before { left: 12px; }
+.guillotine::after { right: 12px; }
+
+/* Rope */
+.rope {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 5px;
+  height: 100%;
+  background: #333;
+  transform: translateX(-50%);
+  z-index: 6;
+  animation: ropeTension 4s ease-in-out forwards;
+}
+
+/* Blade */
+.blade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: silver;
+  border-bottom: 3px solid #999;
+  z-index: 5;
+  transform-origin: top center;
+  animation: bladeSwingDrop 4s ease-in-out forwards;
+}
+
+/* Character */
+.character {
+  position: absolute;
+  bottom: 0;
+  left: -70px;
+  width: 40px;
+  height: 80px;
+  z-index: 3;
+  animation: bringCharacter 2.5s linear forwards;
+}
+
+.character .head {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f5d1a0;
+  border: 1px solid #d4a06c;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 7;
+}
+
+.character .body { position: absolute; top: 40px; left: 10px; width: 20px; height: 40px; background: #3498db; border-radius: 4px; }
+.character .arm-left { width: 10px; height: 30px; position: absolute; top: 45px; left: -10px; transform: rotate(-30deg); transform-origin: top left; background: #3498db; border-radius: 4px; }
+.character .arm-right { width: 10px; height: 30px; position: absolute; top: 45px; left: 40px; transform: rotate(30deg); transform-origin: top right; background: #3498db; border-radius: 4px; }
+
+/* Helper */
+.helper {
+  position: absolute;
+  bottom: 0;
+  left: -120px;
+  width: 40px;
+  height: 80px;
+  z-index: 2;
+  animation: walkHelper 2.5s linear forwards;
+}
+
+.helper .head { width: 40px; height: 40px; border-radius: 50%; background: #f5d1a0; border: 1px solid #d4a06c; }
+.helper .body { position: absolute; top: 40px; left: 10px; width: 20px; height: 40px; background: #e67e22; border-radius: 4px; }
+.helper .arm-left { width: 10px; height: 30px; position: absolute; top: 45px; left: -10px; transform: rotate(-30deg); transform-origin: top left; background: #e67e22; border-radius: 4px; }
+.helper .arm-right { width: 10px; height: 30px; position: absolute; top: 45px; left: 40px; transform: rotate(30deg); transform-origin: top right; background: #e67e22; border-radius: 4px; }
+
+/* Head after decapitation */
+.head-bounce {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #f5d1a0;
+  border-radius: 50%;
+  border: 1px solid #d4a06c;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: none; /* spawn later */
+  animation: headBounce 5s forwards;
+}
+
+/* Animations */
+@keyframes bringCharacter {
+  0% { left: -70px; }
+  100% { left: 50px; }
+}
+
+@keyframes walkHelper {
+  0% { left: -120px; }
+  100% { left: 0; }
+}
+
+@keyframes ropeTension {
+  0%, 70% { height: 100%; }
+  60% { height: 90%; } /* rope tightens before drop */
+  100% { height: 100%; }
+}
+
+@keyframes bladeSwingDrop {
+  0% { transform: rotate(0deg); top: 0; }
+  20% { transform: rotate(-10deg); } /* swing left */
+  40% { transform: rotate(10deg); }  /* swing right */
+  50% { transform: rotate(0deg); top: 0; } /* pause */
+  55% { top: 220px; } /* drop fully */
+  100% { top: 220px; }
+}
+
+@keyframes headBounce {
+  0% { transform: translateX(-50%) translateY(0) rotate(0deg); opacity: 1; }
+  15% { transform: translateX(-50%) translateY(-20px) rotate(-15deg); }
+  30% { transform: translateX(-50%) translateY(-50px) rotate(45deg); }
+  50% { transform: translateX(-50%) translateY(-30px) rotate(90deg); }
+  70% { transform: translateX(-50%) translateY(80vh) rotate(360deg); opacity: 0; }
+  100% { transform: translateX(-50%) translateY(80vh) rotate(360deg); opacity: 0; }
+}
 
   .text-image {
     flex-direction: row;
