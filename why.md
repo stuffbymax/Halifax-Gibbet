@@ -56,7 +56,8 @@ The project aimed to demonstrate my front-end web development skills while creat
 
 ### Responsive Design
 - Media queries adjust layout, font sizes, and flexbox direction for smaller screens.  
-- Ensured images, timelines, and text scale properly without breaking the layout.  
+- Ensured images, timelines, and text scale properly without breaking the layout. 
+- doesnt work probely 
 
 ---
 

@@ -97,16 +97,19 @@ hamburger.addEventListener('click', () => {
 });
 
 
-const blade = document.querySelector('.blade');
-const headBounce = document.querySelector('.head-bounce');
+  window.addEventListener('load', () => {
+    // Delay the bounce to match blade drop (~2.2s)
+    setTimeout(() => {
+      const head = document.getElementById('headBounce');
+      head.style.display = 'block';
+    }, 2200); // Adjust timing to match blade drop
 
-blade.addEventListener('animationend', () => {
-  const rect = blade.getBoundingClientRect();
-  headBounce.style.left = rect.left + rect.width / 2 - 20 + 'px';
-  headBounce.style.top = rect.top + 220 + 'px';
-  headBounce.style.display = 'block';
-});
-
+    // Optional: Hide the original character's head
+    setTimeout(() => {
+      const originalHead = document.querySelector('.character .head');
+      if (originalHead) originalHead.style.display = 'none';
+    }, 2100);
+  });
 
 
 

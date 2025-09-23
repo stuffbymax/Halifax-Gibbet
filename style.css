@@ -480,83 +480,6 @@ body.dark-mode .timeline-content {
 }
 
 
-    .guillotine {
-      position: relative;
-      width: 100px;
-      height: 150px;
-      background-color: #333;
-      border: 2px solid #222;
-      border-radius: 8px;
-      left: 39%;
-      overflow: hidden;
-    }
-
-    .blade {
-      position: absolute;
-      top: 0;
-      left: 25%;
-      width: 50%;
-      height: 20px;
-      background-color: crimson;
-      animation: dropBlade 2s infinite ease-in-out;
-    }
-
-    .head {
-      position: absolute;
-      bottom: 10px;
-      left: 30%;
-      width: 40%;
-      height: 40px;
-      background-color: peachpuff;
-      border-radius: 50%;
-      animation: vanishHead 2s infinite ease-in-out;
-    }
-
-    @keyframes dropBlade {
-      0% { top: 0; }
-      40% { top: 100px; }
-      60% { top: 100px; }
-      100% { top: 0; }
-    }
-
-    @keyframes vanishHead {
-      0%, 39% { opacity: 1; }
-      40%, 100% { opacity: 0; }
-    }
-
-
-@keyframes slideIn {
-  to {
-    opacity: 1;
-    transform: translateX(0); /* move to original position */
-  }
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  header ul {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  header ul li a {
-    font-size: 18px;
-  }
-
-  #theme-toggle {
-    top: 10px;
-    left: 10px;
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-
   /* Guillotine Scene */
 .guillotine {
   position: relative;
@@ -703,52 +626,180 @@ body.dark-mode .timeline-content {
   100% { transform: translateX(-50%) translateY(80vh) rotate(360deg); opacity: 0; }
 }
 
+    @keyframes dropBlade {
+      0% { top: 0; }
+      40% { top: 100px; }
+      60% { top: 100px; }
+      100% { top: 0; }
+    }
+
+    @keyframes vanishHead {
+      0%, 39% { opacity: 1; }
+      40%, 100% { opacity: 0; }
+    }
+
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0); /* move to original position */
+  }
+}
+
+/* Responsive styles */
+
+@media (max-width: 768px) {
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Footer fixed at bottom, full width, always visible */
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 15px 10px;
+    z-index: 9999;
+  }
+
+  /* Make sure main content is not hidden behind footer */
+  main {
+    padding-bottom: 70px; /* Enough padding so content won’t be covered by footer */
+  }
+
+  /* Responsive header adjustments */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  header ul li a {
+    font-size: 18px;
+  }
+
+  #theme-toggle {
+    top: 10px;
+    left: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  /* Fix text and image sizes */
   .text-image {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    gap: 15px;
   }
 
   .text-image .text,
   .text-image .image {
-    flex: 1 1 100%;
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
   }
 
-  .text-image .text {
-    order: 1;
-  }
-
-  .text-image .image {
-    order: 2;
-  }
-
+  /* Adjust timeline for mobile */
   .timeline {
     width: 100%;
     padding: 20px 10px;
-  }
-
-  .timeline-item {
-    width: 100%;
-    padding: 10px 10px;
-  }
-
-  .timeline-item.left,
-  .timeline-item.right {
-    left: 0;
-    text-align: left;
-  }
-
-  .timeline-item::before {
-    left: 10px;
-    right: auto;
   }
 
   .timeline::before {
     left: 20px;
   }
 
-  
-}
+  .timeline-item {
+    width: 100%;
+    padding-left: 40px;
+    text-align: left;
+    left: 0 !important;
+  }
 
+  .timeline-item::before {
+    left: 10px !important;
+    right: auto !important;
+  }
+
+  /* Reduce animation distances for smoother mobile */
+  .origins_articale.animate {
+    animation: slideInLeftSmall 1s forwards;
+  }
+
+  .origins_articale_right.animate {
+    animation: slideInRightSmall 1s forwards;
+  }
+
+  .origins {
+    animation: slideInSmall 1s forwards;
+  }
+
+  .origins_right {
+    animation: slideInSmallReverse 1s forwards;
+  }
+
+  /* Guillotine size */
+  .guillotine {
+    width: 120px;
+    height: 240px;
+    margin: 40px auto;
+  }
+
+  /* Keyframe animations reduced distances */
+  @keyframes slideInLeftSmall {
+    from {
+      opacity: 0;
+      transform: translateX(-50%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRightSmall {
+    from {
+      opacity: 0;
+      transform: translateX(50%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInSmall {
+    from {
+      opacity: 0;
+      transform: translateX(50%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInSmallReverse {
+    from {
+      opacity: 0;
+      transform: translateX(-50%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
 
 /* End of CSS */
